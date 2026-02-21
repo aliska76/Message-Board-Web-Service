@@ -110,7 +110,7 @@ npm run test:cov
 | POST	| /messages	| Create new message	| Yes
 | POST	| /messages/:id/vote	| Vote on message	| Yes
 | DELETE	| /messages/:id	| Delete own message	| Yes
-| GET	| /messages/user/messages	G| et user's messages	| Yes
+| GET	| /messages/user/messages	| Get user's messages	| Yes
 
 ## 📦 DTOs
 ### Register DTO
