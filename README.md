@@ -24,6 +24,72 @@ A RESTful API service for a message board application built with NestJS, TypeORM
 - **Documentation**: Swagger UI
 - **Testing**: Jest + Supertest
 
+## 📦 Features
+- User registration
+- User login (JWT-based authentication)
+- Logout (stateless)
+- Create messages
+- Vote (up/down)
+- Delete own messages
+- Get all messages with vote count
+- Get user messages
+- Rate limiting
+- Input validation
+- Centralized error handling
+
+## 🏗 Architecture
+
+The application follows a modular architecture:
+```bash
+src/
+ ├── auth/
+ ├── users/
+ ├── messages/
+ ├── database/
+ └── common/
+```
+
+Principles:
+
+- Separation of concerns
+- Dependency Injection
+- Thin controllers
+- Business logic inside services
+- Repository pattern via TypeORM
+
+## 🗄 Database
+
+SQLite local file:
+```pgsql
+database.sqlite
+```
+
+Entities:
+
+- User
+- Message
+- Vote
+
+Each entity includes:
+
+- uuid primary key
+- createdAt
+- updatedAt
+
+Vote uniqueness constraint:
+
+```
+UNIQUE(user_id, message_id)
+```
+
+## 🔐 Authentication
+
+JWT-based authentication.
+
+- Access token returned on login
+- Protected endpoints use JwtAuthGuard
+- Stateless logout
+
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
@@ -33,7 +99,7 @@ A RESTful API service for a message board application built with NestJS, TypeORM
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/aliska76/Message-Board-Web-Service.git
 cd cibus-web-service
 ```
 
