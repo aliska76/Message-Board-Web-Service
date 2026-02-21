@@ -99,13 +99,13 @@ npm run test:cov
 ## 📡 API Endpoints
 ### Auth Endpoints
 | Method	| Endpoint	| Description	| Auth Required
-| :--- | :---: | ---: |
+| :--- | :---: | ---: | ---: |
 | POST	| /auth/register	| Register new user	| No
 | POST	| /auth/login	| Login user	| No
 | POST	| /auth/logout	| Logout user	| Yes
 ### Messages Endpoints
 | Method	| Endpoint	| Description	| Auth Required
-| :--- | :---: | ---: |
+| :--- | :---: | ---: | ---: |
 | GET	| /messages	| Get all messages	| No
 | POST	| /messages	| Create new message	| Yes
 | POST	| /messages/:id/vote	| Vote on message	| Yes
