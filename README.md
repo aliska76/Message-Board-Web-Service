@@ -81,7 +81,7 @@ npm run test:e2e
 npm run test:cov
 ```
 
-# 🧪 Example Test Commands
+### 🧪 Example Test Commands
 ```bash
 # Run all e2e tests
 npm run test:e2e
@@ -97,13 +97,13 @@ npm run test:cov
 ```
 
 ## 📡 API Endpoints
-# Auth Endpoints
+### Auth Endpoints
 | Method	| Endpoint	| Description	| Auth Required
 | :--- | :---: | ---: |
 | POST	| /auth/register	| Register new user	| No
 | POST	| /auth/login	| Login user	| No
 | POST	| /auth/logout	| Logout user	| Yes
-# Messages Endpoints
+### Messages Endpoints
 | Method	| Endpoint	| Description	| Auth Required
 | :--- | :---: | ---: |
 | GET	| /messages	| Get all messages	| No
@@ -113,7 +113,7 @@ npm run test:cov
 | GET	| /messages/user/messages	G| et user's messages	| Yes
 
 ## 📦 DTOs
-# Register DTO
+### Register DTO
 ```json
 {
   "username": "john_doe",
@@ -121,42 +121,42 @@ npm run test:cov
 }
 ```
 
-# Login DTO
+### Login DTO
 ```json
 {
   "content": "Hello, world!"
 }
 ```
 
-# Vote DTO
+### Vote DTO
 ```json
 {
   "value": 1  // 1 for upvote, -1 for downvote
 }
 ```
 
-# 🔒 Rate Limiting
+## 🔒 Rate Limiting
 - Register: 3 requests per minute
 - Login: 3 requests per minute
 - Other endpoints: 10 requests per minute
 
 ## 🗄️ Database Schema
 
-# Users
+### Users
 - id (UUID) - Primary key
 - username (string, unique)
 - passwordHash (string)
 - createdAt (datetime)
 - updatedAt (datetime)
 
-# Messages
+### Messages
 - id (UUID) - Primary key
 - content (text)
 - authorId (UUID) - Foreign key to users
 - createdAt (datetime)
 - updatedAt (datetime)
 
-# Votes
+### Votes
 - id (UUID) - Primary key
 - value (integer: 1 or -1)
 - userId (UUID) - Foreign key to users
