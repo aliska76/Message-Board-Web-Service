@@ -60,6 +60,7 @@ Principles:
 ## 🏗 Architecture Notes
 
 The application is built using NestJS, which is a structured framework built on top of Express.
+
 Although Express handles the underlying HTTP layer, Nest provides:
 - Dependency Injection
 - Modular architecture
