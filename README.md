@@ -70,6 +70,74 @@ Although Express handles the underlying HTTP layer, Nest provides:
 
 This allows the application to maintain a clean and scalable architecture while still leveraging the simplicity and performance of Express under the hood.
 
+## 🔒 Security Considerations
+### 1️⃣ Password Storage
+
+User passwords are never stored in plain text.
+
+- Passwords are hashed using a strong one-way hashing algorithm (e.g. bcrypt)
+- Salt is automatically generated
+- Only password hashes are stored in the database
+This prevents credential leakage even if the database is compromised.
+
+### 2️⃣ JWT Authentication
+
+Authentication is implemented using JSON Web Tokens.
+
+- Tokens are signed using a secret key
+- Protected routes use JwtAuthGuard
+- The application is stateless (no server-side session storage)
+
+Token expiration is enforced to reduce long-term token abuse risk.
+
+### 3️⃣ Input Validation
+
+All incoming requests are validated using NestJS ValidationPipe.
+
+- DTO-based validation
+- Whitelisting enabled (strips unknown properties)
+- Prevents mass assignment attacks
+
+Invalid input results in HTTP 400 responses.
+
+### 4️⃣ Authorization Checks
+
+Authorization is enforced at the service layer:
+
+- Users can delete only their own messages
+- Users can vote only once per message (unique constraint)
+- Ownership is verified before destructive operations
+
+Unauthorized access returns HTTP 403.
+
+### 5️⃣ Rate Limiting
+
+Rate limiting is implemented using NestJS Throttler.
+
+- Prevents brute-force login attempts
+- Prevents vote spamming
+- Protects public endpoints from abuse
+
+Exceeding limits results in HTTP 429.
+
+### 6️⃣ Database Integrity
+
+- UUID primary keys reduce enumeration risks
+- Unique constraints prevent duplicate votes
+- Foreign keys enforce relational integrity
+
+### 7️⃣ Error Handling
+
+The application uses centralized exception filters:
+
+- Consistent error responses
+- No stack traces exposed in production
+- Proper HTTP status codes (400, 401, 403, 404, 429, 500)
+
+### 8️⃣ SQL Injection Protection
+
+TypeORM uses parameterized queries internally, preventing SQL injection attacks when used properly.
+
 ## 🗄 Database
 
 SQLite local file:
