@@ -4,6 +4,7 @@
   "description": "Message Board Web Service",
   "author": "aliska76@gmail.com",
   "private": true,
+  "homepage": "https://github.com/aliska76/Message-Board-Web-Service.git",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
