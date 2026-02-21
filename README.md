@@ -16,13 +16,13 @@ A RESTful API service for a message board application built with NestJS, TypeORM
 
 ## 🛠️ Tech Stack
 
-- **Framework**: NestJS
+- **Framework**: NestJS (built on top of Express.js)
 - **Database**: SQLite with TypeORM
 - **Authentication**: JWT + Passport
 - **Validation**: class-validator
 - **Rate Limiting**: @nestjs/throttler
 - **Documentation**: Swagger UI
-- **Testing**: Jest + Supertest
+- **Testing**: Jest + Supertest (unit + e2e tests)
 
 ## 📦 Features
 - User registration
@@ -56,6 +56,19 @@ Principles:
 - Thin controllers
 - Business logic inside services
 - Repository pattern via TypeORM
+
+## 🏗 Architecture Notes
+
+The application is built using NestJS, which is a structured framework built on top of Express.
+
+- Although Express handles the underlying HTTP layer, Nest provides:
+- Dependency Injection
+- Modular architecture
+- Guards, Pipes, and Interceptors
+- Structured error handling
+- Built-in support for OpenAPI (Swagger)
+
+This allows the application to maintain a clean and scalable architecture while still leveraging the simplicity and performance of Express under the hood.
 
 ## 🗄 Database
 
