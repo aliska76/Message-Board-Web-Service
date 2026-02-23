@@ -218,6 +218,40 @@ Once the app is running, visit:
 http://localhost:3000/api
 ```
 Swagger UI provides interactive API documentation where you can test all endpoints.
+<img width="1458" height="703" alt="image" src="https://github.com/user-attachments/assets/ec50ab26-a037-49bc-8709-e43e568b27e7" />
+
+###🔐 Authentication in Swagger
+1. **Get your token** by registering or logging in:
+
+- POST /auth/register - create a new account
+- POST /auth/login - login with existing credentials
+
+**Authorize in Swagger**:
+
+- Click the 🔒 lock icon at the top right of the Swagger page
+- In the popup, enter your token
+- Click "Authorize" and close the dialog
+
+**Swagger will remember your token** for all subsequent requests that require authentication. The lock icon will appear closed (🔒) to indicate you're authorized.
+
+### 📌 Important Notes
+- Tokens are valid for **24 hours** (configurable)
+- You only need to authorize once per Swagger session
+- All endpoints marked with a lock icon (🔒) require authentication
+- If you get a 401 error, your token may have expired - just log in again and update the token
+
+### 🔍 Example Flow
+1. Register a new user: POST /auth/register
+2. Copy the access_token from the response
+3. Click the lock icon and paste: Bearer eyJhbGciOiJIUzI1NiIs...
+4. Now you can test protected endpoints like:
+- POST /messages
+- POST /messages/{id}/vote
+- DELETE /messages/{id}
+- GET /user/messages
+
+This way, you can easily test the entire API flow without manually adding tokens to each request! 🚀 
+
 
 ## 📡 API Endpoints
 ### Auth Endpoints
