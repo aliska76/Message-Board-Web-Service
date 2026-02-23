@@ -2,18 +2,6 @@
 
 A RESTful API service for a message board application built with NestJS, TypeORM, and SQLite.
 
-## 🚀 Features
-
-- User registration and authentication (JWT)
-- Create, read, and delete messages
-- Vote (upvote/downvote) on messages
-- View all messages with vote counts
-- View user's own messages
-- Rate limiting protection
-- Input validation
-- Error handling
-- Swagger API documentation
-
 ## 🛠️ Tech Stack
 
 - **Framework**: NestJS (built on top of Express.js)
@@ -24,18 +12,34 @@ A RESTful API service for a message board application built with NestJS, TypeORM
 - **Documentation**: Swagger UI
 - **Testing**: Jest + Supertest (unit + e2e tests)
 
-## 📦 Features
-- User registration
-- User login (JWT-based authentication)
-- Logout (stateless)
-- Create messages
-- Vote (up/down)
-- Delete own messages
-- Get all messages with vote count
-- Get user messages
-- Rate limiting
-- Input validation
+## 🚀 Features
+### Authentication
+- User registration with email and password
+- JWT-based login for secure authentication
+- Stateless logout (client-side token removal)
+- Password encryption for security
+
+### Message Management
+- Create new messages
+- View all messages with real-time vote counts
+- View messages specific to the authenticated user
+- Delete your own messages
+
+### Voting System
+- Upvote or downvote messages
+- Each user can vote only once per message
+- Real-time vote count updates
+
+### Security & Validation
+- Rate limiting to prevent abuse
+- Input validation and sanitization
 - Centralized error handling
+- Protected routes with JWT verification
+
+###  API Documentation
+- Interactive Swagger UI documentation
+- Easy-to-test API endpoints
+- Detailed request/response examples
 
 ## 🏗 Architecture
 
