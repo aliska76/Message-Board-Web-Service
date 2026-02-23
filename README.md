@@ -75,7 +75,7 @@ Although Express handles the underlying HTTP layer, Nest provides:
 This allows the application to maintain a clean and scalable architecture while still leveraging the simplicity and performance of Express under the hood.
 
 ## 🔒 Security Considerations
-### 1️⃣ Password Storage
+### 1. Password Storage
 
 User passwords are never stored in plain text.
 
@@ -84,7 +84,7 @@ User passwords are never stored in plain text.
 - Only password hashes are stored in the database
 This prevents credential leakage even if the database is compromised.
 
-### 2️⃣ JWT Authentication
+### 2. JWT Authentication
 
 Authentication is implemented using JSON Web Tokens.
 
@@ -94,7 +94,7 @@ Authentication is implemented using JSON Web Tokens.
 
 Token expiration is enforced to reduce long-term token abuse risk.
 
-### 3️⃣ Input Validation
+### 3. Input Validation
 
 All incoming requests are validated using NestJS ValidationPipe.
 
@@ -104,7 +104,7 @@ All incoming requests are validated using NestJS ValidationPipe.
 
 Invalid input results in HTTP 400 responses.
 
-### 4️⃣ Authorization Checks
+### 4. Authorization Checks
 
 Authorization is enforced at the service layer:
 
@@ -114,7 +114,7 @@ Authorization is enforced at the service layer:
 
 Unauthorized access returns HTTP 403.
 
-### 5️⃣ Rate Limiting
+### 5. Rate Limiting
 
 Rate limiting is implemented using NestJS Throttler.
 
@@ -124,13 +124,13 @@ Rate limiting is implemented using NestJS Throttler.
 
 Exceeding limits results in HTTP 429.
 
-### 6️⃣ Database Integrity
+### 6. Database Integrity
 
 - UUID primary keys reduce enumeration risks
 - Unique constraints prevent duplicate votes
 - Foreign keys enforce relational integrity
 
-### 7️⃣ Error Handling
+### 7. Error Handling
 
 The application uses centralized exception filters:
 
@@ -138,7 +138,7 @@ The application uses centralized exception filters:
 - No stack traces exposed in production
 - Proper HTTP status codes (400, 401, 403, 404, 429, 500)
 
-### 8️⃣ SQL Injection Protection
+### 8. SQL Injection Protection
 
 TypeORM uses parameterized queries internally, preventing SQL injection attacks when used properly.
 
