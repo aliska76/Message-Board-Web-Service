@@ -219,34 +219,6 @@ http://localhost:3000/api
 ```
 Swagger UI provides interactive API documentation where you can test all endpoints.
 
-
-## 🧪 Testing
-```bash
-# unit tests
-npm run test
-
-# e2e tests
-npm run test:e2e
-
-# test coverage
-npm run test:cov
-```
-
-### 🧪 Example Test Commands
-```bash
-# Run all e2e tests
-npm run test:e2e
-
-# Run specific test file
-npm run test:e2e -- auth.e2e-spec.ts
-
-# Run with verbose output
-npm run test:e2e -- --verbose
-
-# Run with coverage
-npm run test:cov
-```
-
 ## 📡 API Endpoints
 ### Auth Endpoints
 | Method	| Endpoint	| Description	| Auth Required
@@ -322,6 +294,36 @@ npm run test:cov
 | JWT_SECRET | Secret key for JWT |	Required
 | PORT | Server port| 3000
 | NODE_ENV| Environment	| development
+
+## 🧪 Testing
+```bash
+# unit tests
+npm run test
+
+# e2e tests
+npm run test:e2e
+
+# test coverage
+npm run test:cov
+
+# throttler tests
+npm run test:e2e -- throttler.e2e-spec.ts
+```
+
+### 🧪 Example Test Commands
+```bash
+# Run all e2e tests
+npm run test:e2e
+
+# Run specific test file
+npm run test:e2e -- auth.e2e-spec.ts
+
+# Run with verbose output
+npm run test:e2e -- --verbose
+
+# Run with coverage
+npm run test:cov
+```
 
 ## 👥 Authors
 Alisa Rakhlina
