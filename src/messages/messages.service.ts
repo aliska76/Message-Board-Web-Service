@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DataSource } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Message } from './messages.entity';
 import { Vote } from './vote.entity';
 import { CreateMessageDto } from './dto/create-message.dto';

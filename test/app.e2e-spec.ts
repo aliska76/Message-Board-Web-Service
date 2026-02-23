@@ -260,12 +260,12 @@ describe('AppController (e2e)', () => {
     describe('GET /user/messages', () => {
       beforeEach(async () => {
         // Create several messages
-        const message1 = await request(app.getHttpServer())
+        await request(app.getHttpServer())
           .post('/messages')
           .set('Authorization', `Bearer ${authToken}`)
           .send({ content: 'User message 1' });
 
-          const message2 = await request(app.getHttpServer())
+          await request(app.getHttpServer())
           .post('/messages')
           .set('Authorization', `Bearer ${authToken}`)
           .send({ content: 'User message 2' });

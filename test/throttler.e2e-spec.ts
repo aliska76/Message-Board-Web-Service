@@ -50,10 +50,11 @@ describe('Throttler (e2e)', () => {
     });
 
     beforeEach(() => {
+        const currentDate = new Date();
         const randomNum = Math.floor(Math.random() * 10000);
         testUser = {
-            username: `ratelimit_${randomNum}`,
-            password: 'Test123456'
+            username: `ratelimit_${currentDate.getMilliseconds().toString()}_${randomNum}`,
+            password: 'Test123456',
         };
     });
 
@@ -86,13 +87,34 @@ describe('Throttler (e2e)', () => {
         expect(blockedResponse.body.message.toString()).toContain('Too Many Requests');
     }, 30000);
 
-    it('should block login attempts after limit is exceeded', async () => {
+    it('should verify user exists after registration', async () => {
         const testApp = await createThrottlerApp();
 
+        // Register
+        await request(testApp.getHttpServer())
+            .post('/auth/register')
+            .set('Content-Type', 'application/json')
+            .send(testUser)
+            .expect(201);
+
+        // Try to login with same credentials
+        const loginResponse = await request(testApp.getHttpServer())
+            .post('/auth/login')
+            .set('Content-Type', 'application/json')
+            .send(testUser);
+
+        expect(loginResponse.status).toBe(200);
+    });
+
+    it('should block login attempts after limit is exceeded', async () => {
+        const testApp = await createThrottlerApp();
+        const uniqueUser = testUser = {
+            username: `${testUser.username}_K`,
+            password: 'Test123456',
+        };
         // Create user
         const registerResponse = await request(testApp.getHttpServer())
             .post('/auth/register')
-            .set('Content-Type', 'application/json')
             .send(testUser);
 
         expect(registerResponse.status).toBe(201);
@@ -100,22 +122,23 @@ describe('Throttler (e2e)', () => {
         for (let i = 0; i < REGISTER_LIMIT; i++) {
             const loginResponse = await request(testApp.getHttpServer())
                 .post('/auth/login')
-                .set('Content-Type', 'application/json')
                 .send(testUser);
 
             expect(loginResponse.status).toBe(200);
+            expect(loginResponse.body).toHaveProperty('access_token');
+            expect(loginResponse.body.user.username).toBe(testUser.username);
         }
 
+        // Next try should blocked
         const blockedResponse = await request(testApp.getHttpServer())
             .post('/auth/login')
-            .set('Content-Type', 'application/json')
             .send(testUser);
 
         expect(blockedResponse.status).toBe(429);
         expect(blockedResponse.body.message.toString()).toContain('Too Many Requests');
     }, 30000);
-    
-    it('should have different limits for register (5) and login (10)', async () => {  
+
+    it('should have different limits for register (3) and login (10)', async () => {  
         const throttlerApp = await createThrottlerApp();
         
         for (let i = 0; i < REGISTER_LIMIT; i++) {
@@ -129,18 +152,18 @@ describe('Throttler (e2e)', () => {
             expect(response.status).toBe(201);
         }
 
-      const blockedRegister = await request(throttlerApp.getHttpServer())
-        .post('/auth/register')
-          .send({ username: `${testUser.username}_n`, password: testUser.password });
+        const blockedRegister = await request(throttlerApp.getHttpServer())
+            .post('/auth/register')
+            .send({ username: `${testUser.username}_n`, password: testUser.password });
 
-      expect(blockedRegister.status).toBe(429);
-      expect(blockedRegister.body.message.toString()).toBe('ThrottlerException: Too Many Requests');
+        expect(blockedRegister.status).toBe(429);
+        expect(blockedRegister.body.message.toString()).toBe('ThrottlerException: Too Many Requests');
 
-      const loginResponse = await request(throttlerApp.getHttpServer())
-        .post('/auth/login')
-        .send(testUser);
+        const loginResponse = await request(throttlerApp.getHttpServer())
+            .post('/auth/login')
+            .send(testUser);
 
-      expect(loginResponse.status).not.toBe(429);
+        expect(loginResponse.status).not.toBe(429);
     }, 30000);
 
     it('should reset after TTL expires', async () => {
@@ -149,30 +172,34 @@ describe('Throttler (e2e)', () => {
 
         await request(throttlerApp.getHttpServer())
             .post('/auth/register')
+            .set('Content-Type', 'application/json')
             .send(testUser)
             .expect(201);
 
         for (let i = 0; i < REGISTER_LIMIT; i++) {
             await request(throttlerApp.getHttpServer())
             .post('/auth/login')
-            .send({ username: testUser.username, password: 'wrong' })
-            .expect(401);
+            .send(testUser)
+            .expect(200);
         }
 
         const blockedResponse = await request(throttlerApp.getHttpServer())
             .post('/auth/login')
-            .send({ username: testUser.username, password: 'wrong' });
+            .set('Content-Type', 'application/json')
+            .send(testUser);
 
         expect(blockedResponse.status).toBe(429);
 
         // TTL = 60 sec
         jest.advanceTimersByTime(61000);
 
+        // After TTL request should pass
         const newResponse = await request(throttlerApp.getHttpServer())
             .post('/auth/login')
-            .send({ username: testUser.username, password: 'wrong' });
+            .set('Content-Type', 'application/json')
+            .send(testUser);
 
-        expect(newResponse.status).toBe(401);
+        expect(newResponse.status).toBe(200);
 
         jest.useRealTimers();
     }, 30000);
