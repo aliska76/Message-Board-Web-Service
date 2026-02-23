@@ -15,7 +15,10 @@ export class Message extends BaseEntity {
     @Column({ name: 'author_id' })
     authorId: string;
 
-    @OneToMany(() => Vote, (vote) => vote.message)
+    @OneToMany(() => Vote, (vote) => vote.message, {
+        cascade: true,
+        onDelete: 'CASCADE'
+    })
     votes: Vote[];
 
     voteCount?: number;

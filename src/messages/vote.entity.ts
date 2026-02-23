@@ -16,7 +16,10 @@ export class Vote extends BaseEntity {
     @Column({ name: 'user_id' })
     userId: string;
 
-    @ManyToOne(() => Message, (message) => message.votes, { eager: false })
+    @ManyToOne(() => Message, (message) => message.votes, {
+        eager: false,
+        onDelete: 'CASCADE'
+    })
     @JoinColumn({ name: 'message_id' })
     message: Message;
 
