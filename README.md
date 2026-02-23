@@ -220,7 +220,7 @@ http://localhost:3000/api
 Swagger UI provides interactive API documentation where you can test all endpoints.
 <img width="1458" height="703" alt="image" src="https://github.com/user-attachments/assets/ec50ab26-a037-49bc-8709-e43e568b27e7" />
 
-###🔐 Authentication in Swagger
+### 🔐 Authentication in Swagger
 1. **Get your token** by registering or logging in:
 
 - POST /auth/register - create a new account
