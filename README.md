@@ -157,11 +157,15 @@ Each entity includes:
 - createdAt
 - updatedAt
 
-Vote uniqueness constraint:
+## Database Schema
 
-```
-UNIQUE(user_id, message_id)
-```
+A reference SQLite schema is provided in:
+
+database/schema.sql
+
+Note:
+The application uses TypeORM with `synchronize: true`, so tables are generated automatically at runtime.
+The schema file is provided for clarity and production reference.
 
 ## 🔐 Authentication
 
@@ -313,11 +317,11 @@ npm run test:cov
 - Unique constraint: (userId, messageId)
 
 ## 📝 Environment Variables
-| JWT_SECRET | Secret key for JWT |	Required
+| Variable |	Description |	Default
 | :--- | :---: | ---: |
+| JWT_SECRET | Secret key for JWT |	Required
 | PORT | Server port| 3000
 | NODE_ENV| Environment	| development
-
 
 ## 👥 Authors
 Alisa Rakhlina
