@@ -226,13 +226,13 @@ Swagger UI provides interactive API documentation where you can test all endpoin
 - POST /auth/register - create a new account
 - POST /auth/login - login with existing credentials
 
-**Authorize in Swagger**:
+2. **Authorize in Swagger**:
 
 - Click the 🔒 lock icon at the top right of the Swagger page
 - In the popup, enter your token
 - Click "Authorize" and close the dialog
 
-**Swagger will remember your token** for all subsequent requests that require authentication. The lock icon will appear closed (🔒) to indicate you're authorized.
+3. **Swagger will remember your token** for all subsequent requests that require authentication. The lock icon will appear closed (🔒) to indicate you're authorized.
 
 ### 📌 Important Notes
 - Tokens are valid for **24 hours** (configurable)
