@@ -310,20 +310,5 @@ npm run test:cov
 npm run test:e2e -- throttler.e2e-spec.ts
 ```
 
-### 🧪 Example Test Commands
-```bash
-# Run all e2e tests
-npm run test:e2e
-
-# Run specific test file
-npm run test:e2e -- auth.e2e-spec.ts
-
-# Run with verbose output
-npm run test:e2e -- --verbose
-
-# Run with coverage
-npm run test:cov
-```
-
 ## 👥 Authors
 Alisa Rakhlina
