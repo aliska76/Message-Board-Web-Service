@@ -222,13 +222,13 @@ Swagger UI provides interactive API documentation where you can test all endpoin
 ## 📡 API Endpoints
 ### Auth Endpoints
 | Method	| Endpoint	| Description	| Auth Required
-| :--- | :---: | ---: | ---: |
+| :--- | :--- | :--- | :--- |
 | POST	| /auth/register	| Register new user	| No
 | POST	| /auth/login	| Login user	| No
 | POST	| /auth/logout	| Logout user	| Yes
 ### Messages Endpoints
 | Method	| Endpoint	| Description	| Auth Required
-| :--- | :---: | ---: | ---: |
+| :--- | :--- | :--- | :--- |
 | GET	| /messages	| Get all messages	| No
 | POST	| /messages	| Create new message	| Yes
 | POST	| /messages/:id/vote	| Vote on message	| Yes
@@ -290,7 +290,7 @@ Swagger UI provides interactive API documentation where you can test all endpoin
 
 ## 📝 Environment Variables
 | Variable |	Description |	Default
-| :--- | :---: | ---: |
+| :--- | :--- | :--- |
 | JWT_SECRET | Secret key for JWT |	Required
 | PORT | Server port| 3000
 | NODE_ENV| Environment	| development
